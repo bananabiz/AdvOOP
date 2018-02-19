@@ -7,7 +7,7 @@ namespace Generics
     public class CustomList<T>
     {
         public T[] data;
-        public int amount;
+        public int amount = 0;
 
         public CustomList() { amount = 0; }
 
