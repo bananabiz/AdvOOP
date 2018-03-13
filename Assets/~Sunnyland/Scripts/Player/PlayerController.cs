@@ -20,10 +20,10 @@ namespace SunnyLand.Player
 
     public class PlayerController : MonoBehaviour
     {
-        public float speed = 5f;
+        public float speed = 0.5f;
         public float maxVelocity = 2f;
         public float rayDistance = .5f;
-        public float jumpHeight = 2f;
+        public float jumpHeight = 3f;
         public int maxJumpCount = 2;
         public LayerMask groundLayer;
 
@@ -51,65 +51,81 @@ namespace SunnyLand.Player
             moveDirection.y += Physics.gravity.y * Time.deltaTime; 
         }
 
-        void FixedUpdate()
-        {
-            // feel for the ground
-            DetectGround(); 
-        }
+        //void FixedUpdate()
+        //{
+        //    // feel for the ground
+        //    DetectGround(); 
+        //}
 
-        void OnDrawGizmos()
-        {
-            Ray groundRay = new Ray(transform.position, Vector3.down);
-            Gizmos.DrawLine(groundRay.origin, groundRay.origin + groundRay.direction * rayDistance);
-        }
+        //void OnDrawGizmos()
+        //{
+        //    Ray groundRay = new Ray(transform.position, Vector3.down);
+        //    Gizmos.DrawLine(groundRay.origin, groundRay.origin + groundRay.direction * rayDistance);
+        //}
         #endregion
 
         #region Custom Functions
-        void DetectGround()
+        //void DetectGround()
+        //{
+        //    //create a ray going down
+        //    Ray downRay = new Ray(transform.position, Vector3.down);
+        //    //set hit to 2D Raycast
+        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, Mathf.Infinity, groundLayer);
+        //    //if hit collider is not null
+        //    if (hit.collider != null)
+        //    {
+        //        //reset currentJump
+        //        currentJump = 0;
+        //    }
+        //}
+
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            //create a ray going down
-
-            //set hit to 2D Raycast
-
-            //if hit collider is not null
-
-                //reset currentJump
-        }
+            if (other.gameObject.tag == "Ground")
+            {
+                currentJump = 0;
+            }
+        } 
 
         void LimitVelocity()
         {
             //if rigid's velocity (magnitude) is greater than maxVelocity
 
-                //set rigid velocity to velocity noralized x maxVelocity
+                //set rigid velocity to velocity normalized x maxVelocity
+
         }
 
         public void Jump()
         {
             //if currentJump is less than max jump
-
+            if (currentJump < maxJumpCount)
+            {
                 //increment currentJump
-
+                currentJump++;
                 //add force to player (using impulse)
-                
+                rigid.AddForce(transform.up * jumpHeight, ForceMode2D.Impulse); 
+            }
+           
         }
         
         public void Move(float horizontal)
         {
             //if horizontal > 0
 
-                //flip character
+            //flip character
 
             //if horizontal < 0;
 
-                //flip character
+            //flip character
 
             //add force to player in the right direction
-
+            rigid.AddForce(transform.right * horizontal * speed, ForceMode2D.Impulse);
+            
             //limit velocity
-
+            LimitVelocity();
         }
 
-        public void Climb()
+        public void Climb(float vertical)
         {
 
         }
