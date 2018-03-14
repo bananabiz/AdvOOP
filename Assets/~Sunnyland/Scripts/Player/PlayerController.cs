@@ -90,9 +90,11 @@ namespace SunnyLand.Player
         void LimitVelocity()
         {
             //if rigid's velocity (magnitude) is greater than maxVelocity
-
+            if (rigid.velocity.magnitude > maxVelocity)
+            {
                 //set rigid velocity to velocity normalized x maxVelocity
-
+                rigid.velocity = rigid.velocity.normalized * maxVelocity;
+            }
         }
 
         public void Jump()
@@ -119,10 +121,12 @@ namespace SunnyLand.Player
             //flip character
 
             //add force to player in the right direction
-            rigid.AddForce(transform.right * horizontal * speed, ForceMode2D.Impulse);
-            
+            //rigid.AddForce(transform.right * horizontal * speed, ForceMode2D.Impulse);
+
+            transform.position += new Vector3(horizontal, 0, 0) * Time.deltaTime * maxVelocity; 
+
             //limit velocity
-            LimitVelocity();
+            //LimitVelocity();
         }
 
         public void Climb(float vertical)

@@ -34,7 +34,7 @@ namespace SunnyLand.Player
             float inputV = Input.GetAxis("Vertical");
             playerCon.Climb(inputV);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
             {
                 playerCon.Jump();
             }
