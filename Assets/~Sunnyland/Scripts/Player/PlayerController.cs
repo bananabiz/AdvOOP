@@ -26,13 +26,14 @@ namespace SunnyLand.Player
         public float jumpHeight = 3f;
         public int maxJumpCount = 2;
         public LayerMask groundLayer;
+        public bool onLadder;
 
         private Vector3 moveDirection;
         private int currentJump = 0;
 
         //References
         private SpriteRenderer rend;
-        //private Animator anim;
+        private Animator anim;
         private Rigidbody2D rigid;
 
 
@@ -40,7 +41,7 @@ namespace SunnyLand.Player
         void Start()
         {
             rend = GetComponent<SpriteRenderer>();
-            //anim = GetComponent<Animator>();
+            anim = GetComponent<Animator>();
             rigid = GetComponent<Rigidbody2D>();
         }
 
@@ -138,7 +139,17 @@ namespace SunnyLand.Player
 
         public void Climb(float vertical)
         {
-
+            if (onLadder)
+            {
+                anim.SetBool("climb", true);
+                rigid.gravityScale = 0;
+                transform.position += new Vector3(0, vertical, 0) * Time.deltaTime * maxVelocity;
+            }
+            if (!onLadder)
+            {
+                anim.SetBool("climb", false);
+                rigid.gravityScale = 1;
+            }
         }
 
         #endregion

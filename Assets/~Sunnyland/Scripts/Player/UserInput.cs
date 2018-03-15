@@ -43,7 +43,7 @@ namespace SunnyLand.Player
             }
 
             float inputV = Input.GetAxis("Vertical");
-            if (inputV < 0)
+            if (inputV < 0 && !playerCon.onLadder)
             {
                 anim.SetBool("crouch", true);
                 playerCon.Climb(inputV);
@@ -52,15 +52,15 @@ namespace SunnyLand.Player
             {
                 anim.SetBool("crouch", false);
             }
-            /*if (inputV != 0)
+
+            if (inputV != 0 && playerCon.onLadder)
             {
-                anim.SetBool("climb", true);
                 playerCon.Climb(inputV);
             }
-            else
+            if (!playerCon.onLadder)
             {
                 anim.SetBool("climb", false);
-            }*/
+            }
 
             if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
             {
