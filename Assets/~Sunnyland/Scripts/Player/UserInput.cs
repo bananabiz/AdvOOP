@@ -19,24 +19,57 @@ namespace SunnyLand.Player
     public class UserInput : MonoBehaviour
     {
         private PlayerController playerCon;
+        private Animator anim;
 
         // Use this for initialization
         void Start()
         {
             playerCon = GetComponent<PlayerController>();
+            anim = GetComponent<Animator>();
         }
 
         // Update is called once per frame
         void Update()
         {
             float inputH = Input.GetAxis("Horizontal");
-            playerCon.Move(inputH);
+            if (inputH != 0)
+            {
+                anim.SetBool("run", true);
+                playerCon.Move(inputH);
+            }
+            else
+            {
+                anim.SetBool("run", false);
+            }
+
             float inputV = Input.GetAxis("Vertical");
-            playerCon.Climb(inputV);
+            if (inputV < 0)
+            {
+                anim.SetBool("crouch", true);
+                playerCon.Climb(inputV);
+            }
+            else
+            {
+                anim.SetBool("crouch", false);
+            }
+            /*if (inputV != 0)
+            {
+                anim.SetBool("climb", true);
+                playerCon.Climb(inputV);
+            }
+            else
+            {
+                anim.SetBool("climb", false);
+            }*/
 
             if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
             {
+                anim.SetBool("jump", true);
                 playerCon.Jump();
+            }
+            else
+            {
+                anim.SetBool("jump", false);
             }
         }
     }

@@ -32,7 +32,7 @@ namespace SunnyLand.Player
 
         //References
         private SpriteRenderer rend;
-        private Animator anim;
+        //private Animator anim;
         private Rigidbody2D rigid;
 
 
@@ -40,7 +40,7 @@ namespace SunnyLand.Player
         void Start()
         {
             rend = GetComponent<SpriteRenderer>();
-            anim = GetComponent<Animator>();
+            //anim = GetComponent<Animator>();
             rigid = GetComponent<Rigidbody2D>();
         }
 
@@ -51,42 +51,36 @@ namespace SunnyLand.Player
             moveDirection.y += Physics.gravity.y * Time.deltaTime; 
         }
 
-        //void FixedUpdate()
-        //{
-        //    // feel for the ground
-        //    DetectGround(); 
-        //}
+        /*
+        void FixedUpdate()
+        {
+            // feel for the ground
+            DetectGround();
+        }
 
-        //void OnDrawGizmos()
-        //{
-        //    Ray groundRay = new Ray(transform.position, Vector3.down);
-        //    Gizmos.DrawLine(groundRay.origin, groundRay.origin + groundRay.direction * rayDistance);
-        //}
+        void OnDrawGizmos()
+        {
+            Ray groundRay = new Ray(transform.position, Vector3.down);
+            Gizmos.DrawLine(groundRay.origin, groundRay.origin + groundRay.direction * rayDistance);
+        } */
         #endregion
 
         #region Custom Functions
-        //void DetectGround()
-        //{
-        //    //create a ray going down
-        //    Ray downRay = new Ray(transform.position, Vector3.down);
-        //    //set hit to 2D Raycast
-        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, Mathf.Infinity, groundLayer);
-        //    //if hit collider is not null
-        //    if (hit.collider != null)
-        //    {
-        //        //reset currentJump
-        //        currentJump = 0;
-        //    }
-        //}
-
-        private void OnCollisionEnter2D(Collision2D other)
+        /*
+        void DetectGround()
         {
-            if (other.gameObject.tag == "Ground")
+            //create a ray going down
+            Ray downRay = new Ray(transform.position, Vector3.down);
+            //set hit to 2D Raycast
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, Mathf.Infinity, groundLayer);
+            //if hit collider is not null
+            if (hit.collider != null)
             {
+                //reset currentJump
                 currentJump = 0;
             }
-        } 
-
+        }
+        
         void LimitVelocity()
         {
             //if rigid's velocity (magnitude) is greater than maxVelocity
@@ -94,6 +88,14 @@ namespace SunnyLand.Player
             {
                 //set rigid velocity to velocity normalized x maxVelocity
                 rigid.velocity = rigid.velocity.normalized * maxVelocity;
+            }
+        } */
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.tag == "Ground")
+            {
+                currentJump = 0;
             }
         }
 
@@ -112,14 +114,19 @@ namespace SunnyLand.Player
         
         public void Move(float horizontal)
         {
+
             //if horizontal > 0
-
-            //flip character
-
+            if (horizontal > 0)
+            {
+                //flip character
+                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+            }
             //if horizontal < 0;
-
-            //flip character
-
+            if (horizontal < 0)
+            {
+                //flip character
+                transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+            }
             //add force to player in the right direction
             //rigid.AddForce(transform.right * horizontal * speed, ForceMode2D.Impulse);
 
