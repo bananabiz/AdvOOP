@@ -30,9 +30,8 @@ namespace SunnyLand.Player
 
         private Vector3 moveDirection;
         private int currentJump = 0;
-
-        //References
-        private SpriteRenderer rend;
+        
+        //private SpriteRenderer rend;
         private Animator anim;
         private Rigidbody2D rigid;
 
@@ -40,7 +39,7 @@ namespace SunnyLand.Player
         #region Unity Functions
         void Start()
         {
-            rend = GetComponent<SpriteRenderer>();
+            //rend = GetComponent<SpriteRenderer>();
             anim = GetComponent<Animator>();
             rigid = GetComponent<Rigidbody2D>();
         }
@@ -97,6 +96,14 @@ namespace SunnyLand.Player
             if (other.gameObject.tag == "Ground")
             {
                 currentJump = 0;
+            }
+            if (other.gameObject.tag == "Enemy")
+            {
+                anim.SetBool("hurt", true);
+            }
+            else
+            {
+                anim.SetBool("hurt", false);
             }
         }
 

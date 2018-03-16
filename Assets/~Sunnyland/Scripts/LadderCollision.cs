@@ -37,6 +37,7 @@ namespace SunnyLand.Player
             if (other.name == "Player")
             {
                 playerCon.onLadder = false;
+                other.GetComponent<Rigidbody2D>().gravityScale = 1;
             }
         } 
     }
