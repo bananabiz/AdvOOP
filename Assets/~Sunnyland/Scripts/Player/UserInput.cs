@@ -12,7 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SunnyLand.Player
+namespace SunnyLand
 {
     [RequireComponent(typeof(PlayerController))]
 

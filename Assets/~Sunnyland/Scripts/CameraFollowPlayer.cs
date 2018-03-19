@@ -25,7 +25,7 @@ namespace SunnyLand.Player
         }
 
         // Update is called once per frame
-        void Update()
+        void LateUpdate()
         {
             transform.position = player.position + new Vector3(1.2f, 0.5f, -10f);
         }
