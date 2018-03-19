@@ -2,7 +2,7 @@
 -----------------------------------
 Copyright (c) 2018 Yongli Wang
 -----------------------------------
-@file: UserInput.cs
+@file: Opossum.cs
 @date: 16/03/2018
 @author: Yongli Wang
 @brief: Script to control opossum movement
@@ -12,7 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SunnyLand.Player
+namespace SunnyLand
 {
     public class Opossum : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SunnyLand
 {
-    [RequireComponent(typeof(PlayerController))]
+    [RequireComponent(typeof(PlayerController1))]
     [RequireComponent(typeof(Animator))]
 
     public class PlayerAnim : MonoBehaviour
@@ -17,7 +17,7 @@ namespace SunnyLand
         {
             anim = GetComponent<Animator>();
             player = GetComponent<PlayerController1>();
-            player.onGroundedChanged += OnGroundedChanged; 
+            //player.onGroundedChanged += OnGroundedChanged; 
         }
 
         // Update is called once per frame

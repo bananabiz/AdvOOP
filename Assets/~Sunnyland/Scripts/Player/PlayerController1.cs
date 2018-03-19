@@ -24,7 +24,7 @@ namespace SunnyLand
         public float maxVelocity = 2f;
         
         [Header("Grounding")]
-        public float rayDistance = .2f;
+        public float rayDistance = .3f;
         public bool isGrounded = false;
         public float maxSlopeAngle = 45f;
         [Header("Crouch")]

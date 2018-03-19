@@ -2,7 +2,7 @@
 -----------------------------------
 Copyright (c) 2018 Yongli Wang
 -----------------------------------
-@file: UserInput.cs
+@file: LadderCollision.cs
 @date: 15/03/2018
 @author: Yongli Wang
 @brief: Script to detect if player collide with ladders
@@ -12,7 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SunnyLand.Player
+namespace SunnyLand
 {
     public class LadderCollision : MonoBehaviour
     {
