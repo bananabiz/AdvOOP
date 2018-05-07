@@ -5,7 +5,7 @@ using UnityEngine;
 //https://www.youtube.com/watch?v=5E5_Fquw7BM
 
 public class Parallaxing : MonoBehaviour
-{
+{/*
     public Transform[] backgrounds;  //Array(list) of all the back- and foregrounds to be parallaxed
     private float[] parallaxScales;  //The proportion of the camera's movement to move the backgrounds by
     public float smoothing = 1f;  //How smooth the parallax is going to be. Make sure to set this above 0
@@ -51,5 +51,5 @@ public class Parallaxing : MonoBehaviour
         }
         //set the previousCamPos to the camera's position at the end of the frame
         previousCamPos = cam.position;
-	}
+	}*/
 }
